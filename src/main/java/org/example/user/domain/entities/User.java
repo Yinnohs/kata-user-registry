@@ -2,6 +2,9 @@ package org.example.user.domain.entities;
 
 import org.example.user.domain.exceptions.IncorrectCredentialsException;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class User {
     String id;
     String email;
@@ -43,17 +46,25 @@ public class User {
     private boolean isCorrectPassword(String password){
         boolean hasCharacters = passwordContainsCharacters(password);
         boolean hasNumbers = passwordContainsNumber(password);
-        return  hasCharacters && hasNumbers;
+        boolean hasUnderScore = passwordContainsUnderscore(password);
+        return  hasCharacters && hasNumbers && hasUnderScore;
     }
 
     private boolean passwordContainsNumber(String password){
-        String pattern = "[\\d]";
-        return password.matches(pattern);
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(password);
+        return matcher.find();
     }
 
     private boolean passwordContainsCharacters(String password){
+        Pattern pattern = Pattern.compile("[A-Za-z]+");
+        Matcher matcher = pattern.matcher(password);
+        return matcher.find();
+    }
 
-        String pattern = "[\\s]";
-        return password.matches(pattern);
+    private boolean passwordContainsUnderscore(String password){
+        Pattern pattern = Pattern.compile("_+");
+        Matcher matcher = pattern.matcher(password);
+        return matcher.find();
     }
 }
