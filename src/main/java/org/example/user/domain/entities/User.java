@@ -4,13 +4,11 @@ public class User {
     String id;
     String email;
     String password;
-    String name;
 
-    public User(String id, String email, String password, String name) {
+    public User(String id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.name = name;
     }
 
     public String getId() {
@@ -35,13 +33,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
