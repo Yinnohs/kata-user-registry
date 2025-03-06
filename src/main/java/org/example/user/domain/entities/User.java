@@ -41,7 +41,19 @@ public class User {
     }
 
     private boolean isCorrectPassword(String password){
-        String expectedPasswordPattern = "[A-Za-z0-9]";
-        return  password.matches(expectedPasswordPattern);
+        boolean hasCharacters = passwordContainsCharacters(password);
+        boolean hasNumbers = passwordContainsNumber(password);
+        return  hasCharacters && hasNumbers;
+    }
+
+    private boolean passwordContainsNumber(String password){
+        String pattern = "[\\d]";
+        return password.matches(pattern);
+    }
+
+    private boolean passwordContainsCharacters(String password){
+
+        String pattern = "[\\s]";
+        return password.matches(pattern);
     }
 }
