@@ -114,4 +114,23 @@ public class AcceptanceRegistrationTests {
 
         Assertions.assertThrows(IncorrectCredentialsException.class, result);
     }
+
+    @Test
+    public void should_find_user_when_created(){
+        //given
+        UserRepository repository = new UserInMemoryRepository();
+        RegisterUser registerUseCase = new RegisterUser(repository);
+        GetAllUsers getAllUsersUseCase = new GetAllUsers(repository);
+        UserController  controller = new UserController(getAllUsersUseCase,registerUseCase);
+
+        String correctEmail = "jose@jose.com";
+        String correctPassword = "jose_123";
+        var expectedUser = controller.registerUser(correctEmail, correctPassword);
+        //when
+
+        var result = controller.findAllUsers();
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(expectedUser, result.get(0));
+    }
 }

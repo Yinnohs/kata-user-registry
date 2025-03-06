@@ -4,6 +4,8 @@ import org.example.user.application.GetAllUsers;
 import org.example.user.application.RegisterUser;
 import org.example.user.domain.entities.User;
 
+import java.util.List;
+
 public class UserController {
 
     private final GetAllUsers getAllUsersUseCase;
@@ -16,5 +18,9 @@ public class UserController {
 
     public User registerUser(String email, String password){
         return registerUserUseCase.execute(email, password);
+    }
+
+    public List<User> findAllUsers(){
+        return null;
     }
 }
