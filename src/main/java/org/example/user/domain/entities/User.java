@@ -1,77 +1,42 @@
 package org.example.user.domain.entities;
 
-import org.example.user.domain.exceptions.IncorrectCredentialsException;
+import org.example.user.domain.vo.Email;
+import org.example.user.domain.vo.Password;
+import org.example.user.domain.vo.UserId;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class User {
-    String id;
-    String email;
-    String password;
+    UserId id;
+    Email email;
+    Password password;
 
     public User(String id, String email, String password) {
-        if (!isCorrectPassword(password)){
-            throw new IncorrectCredentialsException("Invalid Credentials");
-        }
-        this.id = id;
-        this.email = email;
-        this.password = password;
+        this.id = new UserId(id);
+        this.email = new Email(email);
+        this.password = new Password(password);
     }
 
-    public String getId() {
+    public UserId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UserId id) {
         this.id = id;
     }
 
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(Email email) {
         this.email = email;
     }
 
-    public String getPassword() {
+    public Password getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(Password password) {
         this.password = password;
-    }
-
-    private boolean isCorrectPassword(String password){
-        boolean hasCharacters = passwordContainsCharacters(password);
-        boolean hasNumbers = passwordContainsNumber(password);
-        boolean hasUnderScore = passwordContainsUnderscore(password);
-        boolean hasEightCharactersOrMore = passwordShouldContainAtLeastEightCharacters(password);
-
-        return  hasCharacters && hasNumbers && hasUnderScore && hasEightCharactersOrMore;
-    }
-
-    private boolean passwordContainsNumber(String password){
-        Pattern pattern = Pattern.compile("\\d+");
-        Matcher matcher = pattern.matcher(password);
-        return matcher.find();
-    }
-
-    private boolean passwordContainsCharacters(String password){
-        Pattern pattern = Pattern.compile("[A-Za-z]+");
-        Matcher matcher = pattern.matcher(password);
-        return matcher.find();
-    }
-
-    private boolean passwordContainsUnderscore(String password){
-        Pattern pattern = Pattern.compile("_+");
-        Matcher matcher = pattern.matcher(password);
-        return matcher.find();
-    }
-
-    private boolean passwordShouldContainAtLeastEightCharacters(String password){
-        int expectedPasswordLength = 8;
-        return  password.length() >= expectedPasswordLength;
     }
 }
