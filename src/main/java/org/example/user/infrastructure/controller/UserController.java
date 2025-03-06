@@ -2,7 +2,6 @@ package org.example.user.infrastructure.controller;
 
 import org.example.user.application.GetAllUsers;
 import org.example.user.application.RegisterUser;
-import org.example.user.application.ports.out.UserRepository;
 import org.example.user.domain.entities.User;
 
 public class UserController {
