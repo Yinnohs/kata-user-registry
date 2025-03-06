@@ -13,7 +13,7 @@ import org.junit.jupiter.api.function.Executable;
 
 public class AcceptanceRegistrationTests {
     @Test
-    public void should_register_an_user_when_passed_correct_email_password(){
+    public void should_register_an_user_when_passed_correct_email_and_password(){
         //given
         UserRepository repository = new UserInMemoryRepository();
         RegisterUser registerUseCase = new RegisterUser(repository);
