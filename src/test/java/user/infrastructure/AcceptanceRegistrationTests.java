@@ -46,4 +46,21 @@ public class AcceptanceRegistrationTests {
 
         Assertions.assertThrows(IncorrectCredentialsException.class, result);
     }
+
+    @Test
+    public void should_not_register_when_passed_only_characters_password(){
+        //given
+        UserRepository repository = new UserInMemoryRepository();
+        RegisterUser registerUseCase = new RegisterUser(repository);
+        GetAllUsers getAllUsersUseCase = new GetAllUsers(repository);
+        UserController  controller = new UserController(getAllUsersUseCase,registerUseCase);
+
+        String correctEmail = "jose@jose.com";
+        String wrongPassword= "abcdefghijk";
+        //when
+
+        Executable result = ()-> controller.registerUser(correctEmail, wrongPassword);
+
+        Assertions.assertThrows(IncorrectCredentialsException.class, result);
+    }
 }
