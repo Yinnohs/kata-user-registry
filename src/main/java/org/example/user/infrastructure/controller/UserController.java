@@ -21,6 +21,6 @@ public class UserController {
     }
 
     public List<User> findAllUsers(){
-        return null;
+        return getAllUsersUseCase.getAllUsers();
     }
 }
