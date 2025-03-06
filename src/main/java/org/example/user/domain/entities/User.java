@@ -47,7 +47,9 @@ public class User {
         boolean hasCharacters = passwordContainsCharacters(password);
         boolean hasNumbers = passwordContainsNumber(password);
         boolean hasUnderScore = passwordContainsUnderscore(password);
-        return  hasCharacters && hasNumbers && hasUnderScore;
+        boolean hasEightCharactersOrMore = passwordShouldContainAtLeastEightCharacters(password);
+
+        return  hasCharacters && hasNumbers && hasUnderScore && hasEightCharactersOrMore;
     }
 
     private boolean passwordContainsNumber(String password){
@@ -66,5 +68,10 @@ public class User {
         Pattern pattern = Pattern.compile("_+");
         Matcher matcher = pattern.matcher(password);
         return matcher.find();
+    }
+
+    private boolean passwordShouldContainAtLeastEightCharacters(String password){
+        int expectedPasswordLength = 8;
+        return  password.length() >= expectedPasswordLength;
     }
 }
