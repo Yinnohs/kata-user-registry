@@ -63,4 +63,21 @@ public class AcceptanceRegistrationTests {
 
         Assertions.assertThrows(IncorrectCredentialsException.class, result);
     }
+
+    @Test
+    public void should_not_register_when_passed_password_without_underscore(){
+        //given
+        UserRepository repository = new UserInMemoryRepository();
+        RegisterUser registerUseCase = new RegisterUser(repository);
+        GetAllUsers getAllUsersUseCase = new GetAllUsers(repository);
+        UserController  controller = new UserController(getAllUsersUseCase,registerUseCase);
+
+        String correctEmail = "jose@jose.com";
+        String wrongPassword= "jose1234";
+        //when
+
+        Executable result = ()-> controller.registerUser(correctEmail, wrongPassword);
+
+        Assertions.assertThrows(IncorrectCredentialsException.class, result);
+    }
 }
