@@ -1,6 +1,6 @@
-package org.example.user.application;
+package org.example.email.application;
 
-import org.example.user.application.ports.out.EmailSender;
+import org.example.email.application.ports.out.EmailSender;
 
 public class SendEmailUseCase {
     private final EmailSender emailSender;

@@ -1,6 +1,6 @@
-package org.example.user.infrastructure.adapter;
+package org.example.email.infrastructure.adapter;
 
-import org.example.user.application.ports.out.EmailSender;
+import org.example.email.application.ports.out.EmailSender;
 
 public class EmailSenderMockAdapter implements EmailSender {
 
