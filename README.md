@@ -25,6 +25,10 @@ Having the two use cases implemented, the second part consist on using the CQRS 
 
 ### Second Part:
 
+- Should divide the CUD action in COMMANDS and Read actions in QUERYS
+- This COMMANDs and QUERYs  should be  trated as events (event publishing - even if it not use a different database)
+- Code needs to be updated to manage command and querys
+
 ## Remember
 You could approach this kata using inside-out or outside-in but TDD is a must!.
 
