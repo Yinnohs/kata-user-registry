@@ -1,7 +1,6 @@
 package org.example.user.infrastructure.adapter;
 
 import org.example.email.application.SendEmailUseCase;
-import org.example.email.application.ports.out.EmailSender;
 import org.example.user.application.ports.in.UserEmailSender;
 
 public class UserEmailSenderAdapter implements UserEmailSender {

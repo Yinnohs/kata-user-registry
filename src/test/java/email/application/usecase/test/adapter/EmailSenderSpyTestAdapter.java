@@ -9,6 +9,7 @@ public class EmailSenderSpyTestAdapter implements EmailSender {
     @Override
     public void sendEmail(String email) {
         System.out.println("EMAIL SENDED TO: " + email);
+        methodExecuteTimes ++;
     }
 
     public boolean methodHasBeenExecuteXTimesOrMore(long expectedExecutions){
